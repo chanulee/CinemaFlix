@@ -1,0 +1,24 @@
+// manifest.json
+{
+    "manifest_version": 3,
+    "name": "Netflix Cinema Mode",
+    "version": "1.0",
+    "description": "Creates a cinema-like experience on Netflix",
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "storage"
+    ],
+    "host_permissions": [
+      "*://*.netflix.com/*"
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    },
+    "content_scripts": [
+      {
+        "matches": ["*://*.netflix.com/*"],
+        "js": ["content.js"]
+      }
+    ]
+  }

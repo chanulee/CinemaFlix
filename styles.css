@@ -1,0 +1,12 @@
+.cinema-mode {
+    cursor: none !important;
+  }
+  
+  .cinema-mode .scrubber-container {
+    opacity: 0.3 !important;
+    transition: opacity 0.3s ease;
+  }
+  
+  .cinema-mode:hover .scrubber-container {
+    opacity: 0.6 !important;
+  }
