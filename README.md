@@ -1,5 +1,5 @@
 # CinemaFlix
-_**The core importance of movie theatres is that it's the only place where the audience can't press the stop button.**_   
+_**"The core importance of movie theatres is that it's the only place where the audience can't press the stop button."**_   
 Bong Joon-ho, at the Golden Globe Symposium (interpreted by Sharon Choi)
 
 This Chrome extension takes away users' control to pause, skip, and scroll through the timeline.  
