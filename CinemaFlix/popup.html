@@ -1,78 +1,169 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Netflix Cinema Mode</title>
+  <title>CinemaFlix</title>
   <style>
+    /* Font face declarations for Otto fonts */
+    @font-face {
+      font-family: 'ABCOtto-Bold';
+      src: url('otto/ABCOtto-Bold.woff2') format('woff2');
+      font-weight: bold;
+      font-style: normal;
+    }
+    
+    @font-face {
+      font-family: 'ABCOtto-RegularItalic';
+      src: url('otto/ABCOtto-RegularItalic.woff2') format('woff2');
+    }
+    
     body {
-      width: 200px;
-      padding: 15px;
-      font-family: Arial, sans-serif;
-    }
-    .toggle-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 10px 0;
-    }
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-    }
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      border-radius: 34px;
-      transition: .4s;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      border-radius: 50%;
-      transition: .4s;
-    }
-    input:checked + .slider {
-      background-color: #E50914;
-    }
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-    .shortcut {
-      font-size: 12px;
-      color: #666;
-      margin-top: 10px;
+      width: 240px;
+      padding: 0;
+      background-color: #100127;
       text-align: center;
+      transition: color 0.3s ease;
+    }
+    
+    h1 {
+      margin-top: 8px;
+      margin-bottom: 2px;
+      text-align: center;
+      color: #DA2424;
+      font-weight: bold;
+      font-size: 64px;
+      line-height: 80%;
+      letter-spacing: -0.5px;
+      transition: color 0.3s ease;
+      font-family: 'ABCOtto-Bold', serif;
+    }
+    
+    body.active-mode h1 {
+      color: #253A2F;
+    }
+    
+    p {
+      font-size: 12px;
+      line-height: 120%;
+      font-style: italic;
+      color: #D5A700;
+      transition: color 0.3s ease;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-family: 'ABCOtto-Regular', serif;
+    }
+    
+    body.active-mode p {
+      color: #253A2F;
+    }
+    
+    .toggle-btn {
+      font-family: 'ABCOtto-RegularItalic', serif;
+
+      display: block;
+      margin: 0;
+      padding: 0;
+      background: none;
+      color: #699BF7;
+      cursor: pointer;
+      font-size: 32px;
+      animation: blink 2.5s infinite;
+      transition: color 0.3s ease;
+    }
+    
+    .toggle-btn.active {
+      color: #253A2F;
+    }
+    
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    
+    .info {
+      margin: 0;
+      margin-bottom: 16px;
+      padding: 0;
+      background-color: transparent;
+    }
+    
+    .container {
+      width: 100%;
+      margin: 0 auto;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    
+    button {
+      font-family: 'ABCOtto-RegularItalic', serif;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      font-size: 32px;
+      line-height: 110%;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+    
+    #status {
+      margin-top: 10px;
+      color: green;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .bg-active {
+      background-color: #090017 !important;
     }
   </style>
 </head>
 <body>
-  <h2>Netflix Cinema Mode</h2>
-  <div class="toggle-container">
-    <span>Enable Cinema Mode</span>
-    <label class="switch">
-      <input type="checkbox" id="cinemaMode">
-      <span class="slider"></span>
-    </label>
+  <h1>Cinema<br>Flix</h1>
+    
+  <div class="info">
+    <p id="infoText">Movie theatres are the only place where</p>
+    <p id="secondText">the audience can't press the stop button.</p>
+    <p id="thirdText">Bong Joon-Ho.</p>
   </div>
-  <div class="shortcut">
-    Press 'C' to toggle cinema mode
+  
+  <button id="toggleBtn" class="toggle-btn">→ enter ←</button>
+
+  <div id="offPageContent" class="hidden">
+    <p>"Movie theatres are the only place where<br>the audience can't press the stop button.<br>Bong Joon-Ho."</p>
   </div>
+
   <script src="popup.js"></script>
+  <script>
+    document.getElementById('toggleBtn').addEventListener('click', function() {
+      this.classList.toggle('active');
+      document.body.classList.toggle('active-mode');
+      
+      if (this.classList.contains('active')) {
+        this.textContent = '← the end →';
+        document.getElementById('infoText').textContent = 'Now the Netflix also became the place where';
+        document.getElementById('secondText').textContent = 'the audience can\'t press the stop button.';
+        document.getElementById('thirdText').textContent = 'CinemaFlix.';
+      } else {
+        this.textContent = '→ enter ←';
+        document.getElementById('infoText').textContent = 'Movie theatres are the only place where';
+        document.getElementById('secondText').textContent = 'the audience can\'t press the stop button.';
+        document.getElementById('thirdText').textContent = 'Bong Joon-Ho.';
+      }
+    });
+
+    function updateOffPageText() {
+        document.getElementById('offPageContent').innerHTML = 
+            '<p>"Movie theatres are the only place where<br>the audience can\'t press the stop button.<br>Bong Joon-Ho."</p>';
+    }
+  </script>
 </body>
 </html>
