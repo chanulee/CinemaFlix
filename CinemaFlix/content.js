@@ -206,6 +206,8 @@
     .cinema-mode .nf-loading-spinner,
     .cinema-mode .error-message,
     .cinema-mode .watch-video--skip-content,
+    .cinema-mode .watch-video--flag-container,
+    .cinema-mode .watch-video--back-container,
     .cinema-mode [data-uia*="controls"],
     .cinema-mode [data-uia*="skip"],
     .cinema-mode [data-uia*="pause-"],
